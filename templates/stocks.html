@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block styling %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stocks_style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="stocks-container">
+  <div class="stocks-list">
+    <h1>List of Stocks</h1>
+
+    <table>
+      <!-- Table Header Row -->
+      <thead>
+        <tr>
+          <th>Stock Symbol</th>
+          <th>Number of Shares</th>
+          <th>Purchase Price</th>
+        </tr>
+      </thead>
+
+      <!-- Table Element (Row) -->
+      <tbody>
+        <tr>
+          <td>{{ session['stock_symbol'] }}</td>
+          <td>{{ session['number_of_shares'] }}</td>
+          <td>${{ session['purchase_price'] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
