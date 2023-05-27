@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+/__pycache__/*.pyc
+
 # Mac custom attributes file (Desktop Service Store)
 .DS_Store
 
@@ -26,4 +28,12 @@ htmlcov/
 
 # pytest files
 .pytest_cache/
+
+#replit files
+.breakpoints
+.replit
+flask-stock-portfolio.log
+poetry.lock
+pyproject.toml
+replit.nix
 
