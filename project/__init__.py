@@ -52,7 +52,18 @@ def create_app():
     register_app_callbacks(app)  # NEW!!
     register_error_pages(app)  # NEW!!
 
-    print (config_type) 
+    # import sqlalchemy as sa
+
+    # # Check if the database needs to be initialized
+    # engine = sa.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+    # inspector = sa.inspect(engine)
+    # if not inspector.has_table("users"):
+    #     with app.app_context():
+    #       database.drop_all()
+    #       database.create_all()
+    #       app.logger.info('Initialized the database!')
+    # else:
+    #   app.logger.info('Database already contains the users table.')
     
     return app
 
@@ -69,19 +80,22 @@ def register_blueprints(app):
 
 def configure_logging(app):
     # Logging Configuration
-    file_handler = RotatingFileHandler('instance/flask-stock-portfolio.log',
+    if app.config['LOG_WITH_GUNICORN']:
+        gunicorn_error_logger = logging.getLogger('gunicorn.error')
+        app.logger.handlers.extend(gunicorn_error_logger.handlers)
+        app.logger.setLevel(logging.DEBUG)
+    else:
+        file_handler = RotatingFileHandler('instance/flask-stock-portfolio.log',
                                        maxBytes=16384,
                                        backupCount=20)
-    file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(filename)s:%(lineno)d]')
-    file_handler.setFormatter(file_formatter)
-    file_handler.setLevel(logging.INFO)
-    app.logger.addHandler(file_handler)
+        file_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(filename)s:%(lineno)d]')
+        file_handler.setFormatter(file_formatter)
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
 
-    # Remove the default logger configured by Flask
-    app.logger.removeHandler(default_handler)
-
-    app.logger.info('Starting the Flask Stock Portfolio App...')
-
+        # Remove the default logger configured by Flask
+        app.logger.removeHandler(default_handler)
+        app.logger.info('Starting the Flask Stock Portfolio App...')
 
 ########################
 ### Helper Functions ###

@@ -15,6 +15,8 @@ from itsdangerous import URLSafeTimedSerializer
 from itsdangerous.exc import BadSignature
 from datetime import datetime
 
+print("Entrando a modulo routes de user")
+
 def generate_confirmation_email(user_email):
     confirm_serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
 
@@ -39,9 +41,10 @@ def generate_password_reset_email(user_email):
 
 @users_blueprint.route('/about')
 def about():
-  flash('Thanks for learning about this site!', 'info')
-  return render_template('users/about.html',company_name='TestDriven.io')
-  #return render_template('about.html')
+  #raise
+  print("entrando a funcion about")
+  flash('Thanks for visiting this site!', 'info')
+  return render_template('users/about.html',user_name='Antonio Diaz')
 
 @users_blueprint.errorhandler(403)
 def page_forbidden(e):

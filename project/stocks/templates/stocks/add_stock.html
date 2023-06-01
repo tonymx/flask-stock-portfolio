@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 
-
 {% block styling %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/form_style.css') }}">
 {% endblock %}
@@ -11,8 +10,9 @@
 
   <form method="post">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
     <div class="field">
-      <label for="stockSymbol">Stock Symbol <em>(required)</em></label>
+      <label for="stockSymbol">Stock Symbol <em>(required, 1-5 uppercase letters)</em></label>
       <input type="text" id="stockSymbol" name="stock_symbol" required pattern="[A-Z]{1,5}" />
     </div>
 
@@ -27,11 +27,11 @@
         type="text"
         id="purchasePrice"
         name="purchase_price"
-        required
-        placeholder="$300.00" />
+        placeholder="$300.00"
+        required />
     </div>
 
-    <div class="field">  <!-- NEW!! -->
+    <div class="field">
       <label for="purchaseDate">Purchase Date <em>(required)</em></label>
       <input type="date" id="purchaseDate" name="purchase_date"  placeholder="YYYY-MM-DD" required>
     </div>
