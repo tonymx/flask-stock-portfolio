@@ -34,8 +34,8 @@ class Config(object):
     MAIL_USERNAME = os.getenv('MAIL_USERNAME', default='')
     MAIL_PASSWORD = os.getenv('MAIL_PASSWORD', default='')
     MAIL_DEFAULT_SENDER = os.getenv('MAIL_USERNAME', default='')
-    ALPHA_VANTAGE_API_KEY  = os.getenv('MAIL_USERNAME', default='demo')
-
+    ALPHA_VANTAGE_API_KEY  = os.getenv('ALPHA_VANTAGE_API_KEY', default='demo')
+    
      # Logging
     LOG_WITH_GUNICORN = os.getenv('LOG_WITH_GUNICORN', default=False)
 
