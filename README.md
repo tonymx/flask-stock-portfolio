@@ -1,0 +1,4 @@
+<p><strong>Description</strong><br>Web application developed in Flask that allows you to maintain a list of stocks based on the API of the Alpha Vantage financial platform. Some important features included in this application are described below:</p>
+<p><strong>Security</strong><br>User Registration<br>Email Confirmation<br>User Profile Display<br>Password recovery</p>
+<p><br><strong>Stock information Management</strong><br>Ability to add stocks based on the Alpha Vantage API<br>View added stocks<br>&nbsp;</p>
+<p><strong>Technical Features</strong><br>This application was developed using Python 3.x and the popular web development framework Flask. The application uses Blueprints and the Factory pattern, SQLAlchemy as ORM, libraries for managing email notifications and the Alpha Vantage API integration. Pytest was used for coding unit testing.</p>
